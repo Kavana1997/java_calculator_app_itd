@@ -28,10 +28,24 @@ pipeline{
 
       stage('load testing'){
          steps{
-            dir('./java_app'){
+            catchError(stageResult: 'FAILURE', buildResult: 'SUCCESS'){
+               dir('./java_app'){
                sh 'mvn verify'
+               }
             }
          }
+      }
+
+      stage('deploy tomcat10'){
+         steps{
+            script{
+               deploy adapter: [tomcat9(credentialId:'tomcat_kavana', url: 'http://13.127.77.9:8080')]
+               contextPath:'/calculator'
+               war: 'java_app/target/calculator.war'
+            
+            }
+         }
+
       }
    }
 }

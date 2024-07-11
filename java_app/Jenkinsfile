@@ -7,8 +7,7 @@ pipeline{
       stage('checkout'){
          steps{
             checkout scmGit(branches: [[name: '*/main']],
-                            userRemoteConfigs: [[credentialsId: 'github',
-                            url: 'https://github.com/Kavana1997/java_calculator_app_itd.git']])
+                            url: 'https://github.com/Kavana1997/calculator_app.git']])
          }
       }
       

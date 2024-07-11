@@ -41,7 +41,10 @@ pipeline{
 
       stage('build'){
          steps{
-            sh 'mvn clean package'
+            sh '''
+            cd ./java_app
+            mvn clean package
+            '''
          }
       }
       stage('deploy tomcat10'){

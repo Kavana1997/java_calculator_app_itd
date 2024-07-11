@@ -5,7 +5,7 @@ pipeline{
             steps{
                 checkout scmGit(branches: [[name: '*/main']],
                  extensions: [], 
-                 userRemoteConfigs: [[url: 'https://github.com/Harshitha-1996/calculator_app.git']])
+                 userRemoteConfigs: [[url: 'https://github.com/Kavana1997/calculator_app.git']])
             }
         }
         stage("unit testing"){

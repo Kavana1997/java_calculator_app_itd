@@ -15,7 +15,7 @@ pipeline{
       stage('unit test'){
          steps{
             sh '''
-            cd ./java_app
+            cd ./java_app-main/calculator_app
             mvn test
             '''
          }
@@ -23,7 +23,7 @@ pipeline{
 
       stage('integration test'){
          steps{
-            dir('./java_app'){
+            dir('./java_app-main/calculator_app'){
                sh 'mvn integration-test'           
             }
          }
@@ -32,27 +32,18 @@ pipeline{
       stage('load testing'){
          steps{
             catchError(stageResult: 'FAILURE', buildResult: 'SUCCESS'){
-               dir('./java_app'){
+               dir('./java_app-main/calculator_app'){
                sh 'mvn clean verify'
                }
             }
          }
       }
-
-      stage('build'){
-         steps{
-            sh '''
-            cd ./java_app
-            mvn clean package
-            '''
-         }
-      }
       stage('deploy tomcat10'){
          steps{
             script{
-               deploy adapter: [tomcat10(credentialsId:'tomcat_kavana', url: 'http://13.127.77.9:8080')]
-               contextPath:'./calculator',
-               war: 'java_app/target/calculator.war'
+               deploy adapter: [tomcat9(credentialsId:'tomcat_kavana', url: 'http://13.127.77.9:8080')]
+               contextPath:'/calculator',
+               war: './java_app-main/calculator_app/target/calculator.war'
             }
          }
 

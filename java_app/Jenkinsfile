@@ -42,7 +42,7 @@ pipeline{
       stage('deploy tomcat10'){
          steps{
             script{
-               deploy adapter: [tomcat9(credentialsId:'tomcat_kavana', url: 'http://13.127.77.9:8080')]
+               deploy adapter: [tomcat10(credentialsId:'tomcat_kavana', url: 'http://13.127.77.9:8080')]
                contextPath:'./calculator'
                war: 'java_app/target/calculator.war'
             

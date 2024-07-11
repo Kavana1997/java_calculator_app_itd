@@ -6,8 +6,7 @@ pipeline{
    stages{
       stage('checkout'){
          steps{
-            checkout scmGit(branches: [[name: '*/main']],
-                            url: 'https://github.com/Kavana1997/calculator_app.git']])
+            checkout scmGit(branches: [[name: '*/main']], url: [['https://github.com/Kavana1997/calculator_app.git']])
          }
       }
       

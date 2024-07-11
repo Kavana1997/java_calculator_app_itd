@@ -14,7 +14,7 @@ pipeline{
                 cd  ./java_app-main/calculator_app
                 mvn test 
                 '''
-                }
+            }
         }
         stage("Integration test"){
             steps{

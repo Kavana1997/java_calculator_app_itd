@@ -1,5 +1,8 @@
 pipeline{
    agent any
+   tools{
+      maven 'maven_3.9.8'
+   }
    stages{
       stage('checkout'){
          steps{
@@ -39,7 +42,7 @@ pipeline{
       stage('deploy tomcat10'){
          steps{
             script{
-               deploy adapter: [tomcat9(credentialId:'tomcat_kavana', url: 'http://13.127.77.9:8080')]
+               deploy adapter: [tomcat9(credentialsId:'tomcat_kavana', url: 'http://13.127.77.9:8080')]
                contextPath:'./calculator'
                war: 'java_app/target/calculator.war'
             

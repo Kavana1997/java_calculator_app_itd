@@ -21,8 +21,7 @@ pipeline{
       stage('integration test'){
          steps{
             dir('./java_app'){
-               sh "mvn integration-test"
-            }
+               sh 'mvn integration-test'            }
 
          }
       }
@@ -30,7 +29,7 @@ pipeline{
       stage('load testing'){
          steps{
             dir('./java_app'){
-               sh "mvn verify"
+               sh 'mvn verify'
             }
          }
       }
